@@ -13,8 +13,10 @@ import {
   UseInterceptors,
 } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
+import { Throttle } from '@nestjs/throttler';
 import { CurrentUser } from '../common/decorators/current-user.decorator';
 import { JwtAuthGuard } from '../common/guards/jwt-auth.guard';
+import { FileUploadThrottlerGuard } from '../common/guards/throttle.guard';
 import { User } from '../users/entities/user.entity';
 import { PaginationResult } from './dto/pagination-result.interface';
 import { PaginationDto } from './dto/pagination.dto';
@@ -28,6 +30,8 @@ export class FilesController {
   constructor(private readonly filesService: FilesService) {}
 
   @Post('upload')
+  @UseGuards(FileUploadThrottlerGuard)
+  @Throttle({ fileUpload: {} })
   @UseInterceptors(FileInterceptor('file'))
   async uploadFile(
     @UploadedFile() file: Express.Multer.File,
