@@ -3,8 +3,10 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
+import { File } from '../../files/entities/file.entity';
 
 @Entity('users')
 export class User {
@@ -20,4 +22,7 @@ export class User {
 
   @CreateDateColumn({ name: 'created_at' })
   createdAt: Date;
+
+  @OneToMany(() => File, (file) => file.user)
+  files: File[];
 }

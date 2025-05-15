@@ -7,6 +7,7 @@ import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { databaseConfig } from './config/database.config';
 import { redisConfig } from './config/redis.config';
+import { FilesModule } from './files/files.module';
 import { UsersModule } from './users/users.module';
 import { validationSchema } from './config/validation.schema';
 
@@ -28,6 +29,7 @@ import { validationSchema } from './config/validation.schema';
     }),
     AuthModule,
     UsersModule,
+    FilesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
