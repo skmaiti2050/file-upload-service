@@ -3,6 +3,7 @@ import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MulterModule } from '@nestjs/platform-express';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { FileUploadThrottlerGuard } from '../common/guards/throttle.guard';
 import { multerConfig } from '../config/multer.config';
 import { File } from './entities/file.entity';
 import { Job } from './entities/job.entity';
@@ -23,6 +24,6 @@ import { FileProcessor } from './processors/file.processor';
     }),
   ],
   controllers: [FilesController],
-  providers: [FilesService, FileProcessor],
+  providers: [FilesService, FileProcessor, FileUploadThrottlerGuard],
 })
 export class FilesModule {}
