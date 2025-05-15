@@ -7,7 +7,7 @@ dotenvConfig({ path: '.env' });
 const configService = new ConfigService();
 
 const entitiesPath = join(__dirname, '**', '*.entity{.ts,.js}');
-// const migrationsPath = join(__dirname, 'migrations', '*{.ts,.js}');
+const migrationsPath = join(__dirname, 'migrations', '*{.ts,.js}');
 
 const dataSourceOptions: DataSourceOptions = {
   type: 'postgres',
@@ -16,10 +16,10 @@ const dataSourceOptions: DataSourceOptions = {
   username: configService.get<string>('DB_USERNAME'),
   password: configService.get<string>('DB_PASSWORD'),
   database: configService.get<string>('DB_DATABASE'),
-  synchronize: true,
+  synchronize: false,
   logging: false,
   entities: [entitiesPath],
-  // migrations: [migrationsPath],
+  migrations: [migrationsPath],
   // ssl: configService.get<string>('NODE_ENV') === 'production' ? true : false,
 };
 
