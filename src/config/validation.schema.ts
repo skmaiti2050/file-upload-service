@@ -16,6 +16,9 @@ export const validationSchema = Joi.object({
   JWT_SECRET: Joi.string().required(),
   JWT_EXPIRATION: Joi.string().default('1d'),
 
+  UPLOAD_DESTINATION: Joi.string().default('./uploads'),
+  MAX_FILE_SIZE: Joi.number().default(10485760),
+
   REDIS_HOST: Joi.string().required(),
   REDIS_PORT: Joi.number().default(6379),
 });

@@ -16,6 +16,7 @@ export const databaseConfig = (
     database: configService.get<string>('DB_DATABASE'),
     entities: [entitiesPath],
     synchronize: true,
+    ssl: true
     // ssl: configService.get<string>('NODE_ENV') === 'production' ? true : false,
     // autoLoadEntities: true,
   };
